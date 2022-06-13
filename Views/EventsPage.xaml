@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="WhereMobile.Views.EventsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:WhereMobile.Components"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    xmlns:model="clr-namespace:Shared.DTOs.Event;assembly=Shared"
+    xmlns:viewmodel="clr-namespace:WhereMobile.ViewModels"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="True"
+    x:DataType="viewmodel:EventsViewModel">
+
+    <Grid
+        ColumnDefinitions="*,*,*"
+        RowDefinitions="*,Auto"
+        RowSpacing="0">
+        <RefreshView
+            Grid.ColumnSpan="3"
+            Command="{Binding RefreshEventsCommand}"
+            IsRefreshing="{Binding IsRefreshing}">
+            <CollectionView
+                ItemsSource="{Binding Events}"
+                SelectionChangedCommand="{Binding GoToEventDetailsCommand}"
+                SelectionChangedCommandParameter="{Binding Events}"
+                SelectionMode="None">
+                <CollectionView.EmptyView>
+                    <StackLayout
+                        HeightRequest="200"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="200">
+                        <Image
+                            Aspect="AspectFill"
+                            HorizontalOptions="CenterAndExpand"
+                            Source="dotnet_bot.svg"
+                            VerticalOptions="CenterAndExpand" />
+                    </StackLayout>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:EventDTO">
+                        <Grid Padding="8">
+                            <Frame Padding="0" HeightRequest="250">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:EventsViewModel}}, Path=GoToEventDetailsCommand}" CommandParameter="{Binding .}" />
+                                </Frame.GestureRecognizers>
+                                <VerticalStackLayout>
+                                    <Image
+                                        Aspect="AspectFill"
+                                        HeightRequest="135"
+                                        Source="{Binding Banner}" />
+                                    <VerticalStackLayout
+                                        Grid.Column="1"
+                                        Margin="5,2,0,0"
+                                        Spacing="2">
+                                        <Label
+                                            FontSize="Subtitle"
+                                            HorizontalOptions="Center"
+                                            MaxLines="1"
+                                            Text="{Binding Name}" />
+                                        <HorizontalStackLayout Spacing="5">
+                                            <Image
+                                                Aspect="Fill"
+                                                HeightRequest="9"
+                                                HorizontalOptions="Start"
+                                                Source="{Binding PriceRate, StringFormat='~/Images/price{0}.svg'}"
+                                                WidthRequest="35" />
+                                            <Label FontSize="9" Text="{Binding Category, StringFormat='• {0} •'}" />
+                                            <Label FontSize="9" Text="{Binding MinAge, StringFormat='{0}+'}" />
+                                            <Image
+                                                Margin="220,0,0,0"
+                                                HeightRequest="12"
+                                                HorizontalOptions="EndAndExpand"
+                                                Source="~/Images/heart.svg"
+                                                WidthRequest="12" />
+                                            <Image
+                                                Margin="10,0,0,0"
+                                                HeightRequest="12"
+                                                HorizontalOptions="EndAndExpand"
+                                                Source="~/Images/share.svg"
+                                                WidthRequest="12" />
+                                        </HorizontalStackLayout>
+
+                                        <HorizontalStackLayout>
+                                            <Label FontSize="Micro" Text="{Binding StartDate}" />
+                                        </HorizontalStackLayout>
+                                        <HorizontalStackLayout />
+                                        <Label
+                                            Margin="0,5,0,0"
+                                            FontSize="Caption"
+                                            Text="{Binding ShortDescription}" />
+                                    </VerticalStackLayout>
+                                </VerticalStackLayout>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+        <ActivityIndicator
+            Grid.RowSpan="3"
+            Grid.ColumnSpan="3"
+            HorizontalOptions="FillAndExpand"
+            IsRunning="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}"
+            VerticalOptions="CenterAndExpand"
+            Color="{StaticResource WherePink}" />
+    </Grid>
+
+</ContentPage>

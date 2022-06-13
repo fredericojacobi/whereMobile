@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<HorizontalStackLayout
+    x:Class="WhereMobile.Components.Price"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pricerate="clr-namespace:WhereMobile.Components">
+    <Image
+        HeightRequest="8"
+        HorizontalOptions="Start"
+        Source="~/Images/dollar.svg"
+        WidthRequest="8" />
+    <Image
+        HeightRequest="8"
+        HorizontalOptions="Start"
+        Source="~/Images/dollar.svg"
+        WidthRequest="8" />
+    <Image
+        HeightRequest="8"
+        HorizontalOptions="Start"
+        Source="~/Images/dollardisabled.svg"
+        WidthRequest="8" />
+    <Image
+        HeightRequest="8"
+        HorizontalOptions="Start"
+        Source="~/Images/dollardisabled.svg"
+        WidthRequest="8" />
+    <Image
+        HeightRequest="8"
+        HorizontalOptions="Start"
+        Source="~/Images/dollardisabled.svg"
+        WidthRequest="8" />
+</HorizontalStackLayout>

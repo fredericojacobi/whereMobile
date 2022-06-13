@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="WhereMobile.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:WhereMobile"
+    xmlns:views="clr-namespace:WhereMobile.Views"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.NavBarIsVisible="True"
+    Shell.TabBarIsVisible="True">
+
+    <TabBar>
+        <Tab Title="Início" Icon="home.svg">
+            <ShellContent ContentTemplate="{DataTemplate views:HomePage}" Route="HomePage" />
+        </Tab>
+        <Tab Title="Eventos" Icon="cheers2.png">
+            <ShellContent ContentTemplate="{DataTemplate views:EventsPage}" Route="Events" />
+        </Tab>
+        <Tab Title="Perfil" Icon="user.svg">
+            <ShellContent ContentTemplate="{DataTemplate views:UserDetailsPage}" Route="UserDetailsPage" />
+        </Tab>
+    </TabBar>
+
+</Shell>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="WhereMobile.Views.EventDetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:WhereMobile.ViewModels"
+    Title="{Binding Event.Title}"
+    x:DataType="viewmodel:EventDetailsViewModel">
+
+    <ScrollView>
+        <VerticalStackLayout>
+            <Grid ColumnDefinitions="*,Auto,*" RowDefinitions="160, Auto">
+                <Button
+                    Margin="8"
+                    Command="{Binding OpenMapCommand}"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource ButtonOutline}"
+                    Text="Abrir no mapa"
+                    WidthRequest="200" />
+                <Label Text="{Binding Event.Name}" />
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="WhereMobile.Views.UserDetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    xmlns:model="clr-namespace:Shared.DTOs.UserApplication;assembly=Shared"
+    xmlns:viewmodel="clr-namespace:WhereMobile.ViewModels"
+    Title="{Binding Title}"
+    ios:Page.UseSafeArea="True"
+    x:DataType="viewmodel:UserDetailsViewModel"
+    IconImageSource="whereicon.png">
+    <VerticalStackLayout IsVisible="{Binding IsNotBusy}">
+        <Grid ColumnDefinitions="*, Auto,*" RowDefinitions="120,Auto">
+            <BoxView
+                Grid.ColumnSpan="3"
+                HeightRequest="120"
+                HorizontalOptions="FillAndExpand"
+                Color="{StaticResource WherePink}" />
+            <Frame
+                Grid.RowSpan="2"
+                Grid.Column="1"
+                Margin="0,50,0,0"
+                Padding="0"
+                CornerRadius="80"
+                HeightRequest="120"
+                HorizontalOptions="Center"
+                IsClippedToBounds="True"
+                WidthRequest="120">
+                <Image
+                    Aspect="AspectFill"
+                    HeightRequest="120"
+                    HorizontalOptions="Center"
+                    Source="{Binding User.Photo}"
+                    VerticalOptions="Center"
+                    WidthRequest="120" />
+            </Frame>
+        </Grid>
+        <VerticalStackLayout Padding="10" Spacing="10">
+            <Label Text="{Binding User.FirstName, StringFormat='Olá, {0}'}" />
+        </VerticalStackLayout>
+        <ActivityIndicator
+            Grid.RowSpan="3"
+            Grid.ColumnSpan="3"
+            HorizontalOptions="FillAndExpand"
+            IsRunning="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}"
+            VerticalOptions="CenterAndExpand"
+            Color="{StaticResource WherePink}" />
+    </VerticalStackLayout>
+</ContentPage>
